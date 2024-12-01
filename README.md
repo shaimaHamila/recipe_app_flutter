@@ -1,6 +1,5 @@
 # recipe_app_flutter
 
-Flutter Firebase Setup
 A new Flutter project.
 
 ## Getting Started
