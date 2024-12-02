@@ -21,7 +21,7 @@ class BannerToExplore extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Cook The Best \nRecipes At Home",
+                  "Cook Delicious \nMeals at Home",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app_flutter/Utils/constants.dart';
+import 'package:recipe_app_flutter/Views/view_all_items.dart';
 import 'package:recipe_app_flutter/Widget/banner.dart';
 import 'package:recipe_app_flutter/Widget/food_items_display.dart';
 import 'package:recipe_app_flutter/Widget/my_icon_button.dart';
@@ -65,8 +66,14 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                         TextButton(
-                          //To Add the function to view all
-                          onPressed: () {},
+                          //Function to view all recipes
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const ViewAllItems()),
+                            );
+                          },
                           child: const Text(
                             "View all",
                             style: TextStyle(

@@ -81,7 +81,7 @@ class FoodItemsDisplay extends StatelessWidget {
               ],
             ),
             // for favorite button
-            // now let's whok on favorite button using provider
+            // Favorite button using provider
             Positioned(
               top: 5,
               right: 5,
