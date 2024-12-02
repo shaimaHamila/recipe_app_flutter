@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app_flutter/Utils/constants.dart';
-import 'package:recipe_app_flutter/Widget/food_items_display.dart';
+import 'package:recipe_app_flutter/Widget/food_item_display.dart';
 import 'package:recipe_app_flutter/Widget/my_icon_button.dart';
 
 class ViewAllItems extends StatefulWidget {
@@ -68,7 +68,7 @@ class _ViewAllItemsState extends State<ViewAllItems> {
                             streamSnapshot.data!.docs[index];
                         return Column(
                           children: [
-                            FoodItemsDisplay(recipe: recipe),
+                            FoodItemDisplay(recipe: recipe),
                             Row(
                               children: [
                                 const Icon(Iconsax.star1,

@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app_flutter/Utils/constants.dart';
 import 'package:recipe_app_flutter/Views/view_all_items.dart';
 import 'package:recipe_app_flutter/Widget/banner.dart';
-import 'package:recipe_app_flutter/Widget/food_items_display.dart';
+import 'package:recipe_app_flutter/Widget/food_item_display.dart';
 import 'package:recipe_app_flutter/Widget/my_icon_button.dart';
 
 class MyAppHomeScreen extends StatefulWidget {
@@ -100,8 +100,8 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: recipes
-                                .map((recipe) =>
-                                    FoodItemsDisplay(recipe: recipe))
+                                .map(
+                                    (recipe) => FoodItemDisplay(recipe: recipe))
                                 .toList(),
                           ),
                         ),
