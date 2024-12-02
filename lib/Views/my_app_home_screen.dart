@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipe_app_flutter/Utils/constants.dart';
 import 'package:recipe_app_flutter/Widget/banner.dart';
+import 'package:recipe_app_flutter/Widget/food_items_display.dart';
 import 'package:recipe_app_flutter/Widget/my_icon_button.dart';
 
 class MyAppHomeScreen extends StatefulWidget {
@@ -14,9 +15,16 @@ class MyAppHomeScreen extends StatefulWidget {
 
 class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
   String category = 'All';
+  //Get categories from firebase
   final CollectionReference categoriesItems =
       FirebaseFirestore.instance.collection('Category');
 
+  //Get recipes from firebase
+  Query get fileterdRecipes => FirebaseFirestore.instance
+      .collection("Recipe")
+      .where('category', isEqualTo: category);
+  Query get allRecipes => FirebaseFirestore.instance.collection("Recipe");
+  Query get selectedRecipes => category == 'All' ? allRecipes : fileterdRecipes;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +52,57 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                       ),
                     ),
                     // For categories
-                    categoryList()
+                    categoryList(),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Quick & Easy",
+                          style: TextStyle(
+                              fontSize: 20,
+                              letterSpacing: 0.1,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        TextButton(
+                          //To Add the function to view all
+                          onPressed: () {},
+                          child: const Text(
+                            "View all",
+                            style: TextStyle(
+                                color: kprimaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
+              StreamBuilder(
+                  stream: selectedRecipes.snapshots(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    // If snapshot has data then show it otherwise the progress bar
+                    if (snapshot.hasData) {
+                      final List<DocumentSnapshot> recipes =
+                          snapshot.data?.docs ?? [];
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 15),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: recipes
+                                .map((recipe) =>
+                                    FoodItemsDisplay(recipe: recipe))
+                                .toList(),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  })
             ],
           ),
         ),
