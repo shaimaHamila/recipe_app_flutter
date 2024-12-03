@@ -198,7 +198,7 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
         const Padding(
           padding: EdgeInsets.only(top: 20),
           child: Text(
-            "What are \ncooking todey?",
+            "What are \ncooking today?",
             style:
                 TextStyle(fontSize: 32, fontWeight: FontWeight.bold, height: 1),
           ),
